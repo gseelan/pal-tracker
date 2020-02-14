@@ -33,7 +33,6 @@ public class TimeEntryApiTest {
     public void testCreate() throws Exception {
         ResponseEntity<String> createResponse = restTemplate.postForEntity("/time-entries", timeEntry, String.class);
 
-
         assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         DocumentContext createJson = parse(createResponse.getBody());
@@ -119,7 +118,6 @@ public class TimeEntryApiTest {
         HttpEntity<TimeEntry> entity = new HttpEntity<>(timeEntry);
 
         ResponseEntity<TimeEntry> response = restTemplate.exchange("/time-entries", HttpMethod.POST, entity, TimeEntry.class);
-
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         return response.getBody().getId();
